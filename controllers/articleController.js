@@ -4,7 +4,7 @@ const articleModel = require('../models/articleModel')
 //Articles
 exports.loadArticles = async (req, res) => {
     try {
-        if (!req.session.id) {
+        if (!req.session.email) {
             return res.redirect('/admin/login');
         }
         else{
@@ -20,10 +20,10 @@ exports.loadArticles = async (req, res) => {
 
 exports.removeArticle = async (req, res) => {
     try {
-       
-        // console.log(req.query.id);
         const articleId = req.query.id
-        console.log(articleId);
+        const articleData = await articleModel.findById({ _id: articleId });
+        const imageDeleteHash = articleData.ImageDeleteHash
+
         // Proceed to delete the article using the ID
         const deleteArticle = await articleModel.deleteOne({ _id: articleId });
 
@@ -31,8 +31,13 @@ exports.removeArticle = async (req, res) => {
             return res.status(404).json({ success: false, message: 'Article not found' });
         }
 
+        if (imageDeleteHash) {
+            multer.deleteFromImgur(imageDeleteHash);
+        }
+
         // Send success response
-        res.status(200).json({ success: true, message: 'Article removed successfully' });
+        // res.status(200).json({ success: true, message: 'Article removed successfully' });
+        return res.redirect('/admin/article');
     } catch (error) {
         console.error(error.message);
         res.status(500).json({ success: false, message: 'Internal server error' });

@@ -30,6 +30,6 @@ adminRouter.post('/addArticle', upload.single('articleImage'),articleController.
 adminRouter.get('/editArticle',articleController.loadEditArticle);
 adminRouter.post('/editArticle', upload.single('articleImage'),articleController.updateArticle);
 //remove
-adminRouter.delete('/article',articleController.removeArticle);
+adminRouter.get('/deleteArticle',articleController.removeArticle);
 
 module.exports = adminRouter

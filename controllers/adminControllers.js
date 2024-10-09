@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 
 exports.loadDashboard = async (req, res) => {
     try {
-        if (!req.session.id) {
+        if (!req.session.email) {
             return res.redirect('/admin');
         }
         res.render('admin/dashboard');
@@ -16,10 +16,10 @@ exports.loadDashboard = async (req, res) => {
 //login
 exports.loadLogin = async (req, res) => {
     try {
-        if (req.session.id) {
+        if (req.session.email) {
             res.redirect('/admin/dashboard'); 
         } else {
-            res.render('/admin/login');
+            res.render('admin/login');
         }
     } catch (err) {
         console.error('Error on login:', err);
@@ -45,6 +45,7 @@ exports.adminLoginPost = async (req, res) => {
         }else{
             const passwordCheck = await bcrypt.compare(Password,exisistUser.Password)
             if(passwordCheck){
+                req.session.email=exisistUser.Email
                 res.redirect('/admin/dashboard');
             }else{
                 res.status(400).json('Invalid password')
@@ -60,7 +61,7 @@ exports.adminLoginPost = async (req, res) => {
 //admin Create
 exports.loadAdminCreate = async (req, res) => {
     try {
-        if (!req.session.id) {
+        if (!req.session.email) {
             return res.redirect('/admin/login');
         }
         res.render('admin/adminCreate');
@@ -111,6 +112,6 @@ exports.adminCreatePost = async (req, res) => {
 
 exports.logoutGet=(req,res)=>{
     req.session.destroy()
-    res.redirect("/admin/login")
+    res.redirect("/")
 }
 

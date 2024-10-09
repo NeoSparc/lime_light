@@ -15,9 +15,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(session({
     secret,
     resave: false,
-    saveUninitialized: true
-    }))
-  app.use(nocache())
+    saveUninitialized: true,
+}))
+app.use(nocache())
 
 // Set EJS as the template engine
 app.set('view engine', 'ejs');
