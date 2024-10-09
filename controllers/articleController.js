@@ -33,7 +33,7 @@ exports.addArticlesPost= async (req, res) => {
             Content,
         }= req.body
 
-        // const articleImage = req.file;
+        const articleImage = req.file;
 
         // if (!articleImage) {
         //     // 'No file uploaded'
@@ -42,6 +42,7 @@ exports.addArticlesPost= async (req, res) => {
         const imgurResponse = await multer.uploadToImgur(articleImage.buffer);
         const imageUrl = imgurResponse.link;
         const imageDeleteHash = imgurResponse.deletehash;
+        
         
 
         const article = new articleModel({
@@ -114,7 +115,8 @@ exports.updateArticle= async (req, res) => {
             Institution : Institution,
             Description : Description,
             Content : Content,
-            image : image,
+            articleImage : imageUrl,
+            imageDeleteHash : imageDeleteHash
             
         });
         console.log(article);

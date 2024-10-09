@@ -212,7 +212,7 @@
     <%- include('layouts/sideNav.ejs') %>
         <main class="main-content">
             <h1 class="page-title">Edit Article</h1>
-            <form class="edit-article-form" action="/admin/editArticle" method="post">
+            <form class="edit-article-form" action="/admin/editArticle" method="post" enctype="multipart/form-data>
                 <input type="hidden" name="id" value="<%= articleData._id %>">
                 <div class="form-group">
                     <label for="name">Article Name</label>
@@ -242,7 +242,7 @@
                 </div>
                 <div class="form-group">
                     <label for="image">Image</label>
-                    <input type="file" id="image" name="image" accept="image/*">
+                    <input type="file" id="image" name="articleImage" accept="image/*">
                 </div>
                 <div class="form-group">
                     <label for="content">Article Content</label>

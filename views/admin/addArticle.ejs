@@ -185,7 +185,7 @@
     <%- include('layouts/sideNav.ejs') %>
         <main class="main-content">
             <h1 class="page-title">Create New Article</h1>
-            <form class="create-article-form" action="/admin/addArticle" method="post">
+            <form class="create-article-form" action="/admin/addArticle" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Article Name</label>
                     <input type="text" id="name" name="Name" placeholder="Enter article name" required>
@@ -218,7 +218,7 @@
                 </div>
                 <div class="form-group">
                     <label for="image">Image </label>
-                    <input type="file" id="image" name="image" placeholder="add image">
+                    <input type="file" id="image" name="articleImage" placeholder="add image" > 
                 </div>
                 <button type="submit" class="submit-btn">Publish Article</button>
             </form>
