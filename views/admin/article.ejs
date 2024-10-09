@@ -247,7 +247,7 @@
                 <% for(let i = 0; i < articleList.length; i++) { %>
                 <!-- Article 1 -->
                 <div class="article-card">
-                    <img src="/images/article/<%= articleList[i].image %>" alt="Article " class="article-image">
+                    <img src="<%= articleList[i].articleImage %>" alt="Article " class="article-image">
                     <div class="article-content">
                         <span class="article-category"><%-articleList[i].Category%></span>
                         <h2 class="article-title"><%-articleList[i].Name%></h2>
@@ -262,39 +262,6 @@
                     </div>
                 </div>
                 <%}%>
-                <!-- Article 2 -->
-                <div class="article-card">
-                    <img src="/api/placeholder/600/400" alt="Article 2" class="article-image">
-                    <div class="article-content">
-                        <span class="article-category">Lifestyle</span>
-                        <h2 class="article-title">Mindfulness in the Digital Age</h2>
-                        <p class="article-author">By Jane Smith</p>
-                        <p class="article-description">Discover techniques for maintaining mindfulness in our increasingly digital world...</p>
-                        <div class="article-actions">
-                            <a href="/admin/editArticle" class="edit-btn">Edit</a>
-                            <a href="#" class="view-btn">View</a>
-                            <button class="delete-btn" onclick="confirmDelete(2)">Delete</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Article 3 -->
-                <div class="article-card">
-                    <img src="/api/placeholder/600/400" alt="Article 3" class="article-image">
-                    <div class="article-content">
-                        <span class="article-category">Business</span>
-                        <h2 class="article-title">Sustainable Business Practices</h2>
-                        <p class="article-author">By Alex Johnson</p>
-                        <p class="article-description">Learn about innovative approaches to creating sustainable and profitable businesses...</p>
-                        <div class="article-actions">
-                            <a href="/admin/editArticle" class="edit-btn">Edit</a>
-                            <a href="#" class="view-btn">View</a>
-                            <button class="delete-btn" onclick="confirmDelete(3)">Delete</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Add more article cards as needed -->
 
             </div>
         </main>

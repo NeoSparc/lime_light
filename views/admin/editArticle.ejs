@@ -209,10 +209,10 @@
     </style>
 </head>
 <body>
-    <%- include('layouts/sideNav.ejs') %>
+    <%= include('layouts/sideNav.ejs') %>
         <main class="main-content">
             <h1 class="page-title">Edit Article</h1>
-            <form class="edit-article-form" action="/admin/editArticle" method="post" enctype="multipart/form-data>
+            <form class="edit-article-form" action="/admin/editArticle" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<%= articleData._id %>">
                 <div class="form-group">
                     <label for="name">Article Name</label>
@@ -224,13 +224,7 @@
                 </div>
                 <div class="form-group">
                     <label for="category">Category</label>
-                    <select id="category" name="Category" value="<%= articleData.Category%>" required>  
-                        <option value="">Select a category</option>
-                        <option value="technology">Technology</option>
-                        <option value="lifestyle">Lifestyle</option>
-                        <option value="business">Business</option>
-                        <option value="health">Health</option>
-                    </select>
+                    <input type="text" id="category" name="Category" value="<%= articleData.Category%>" required>  
                 </div>
                 <div class="form-group">
                     <label for="institution">Institution</label>
@@ -241,12 +235,21 @@
                     <textarea id="description" name="Description" value="<%= articleData.Description%>" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="image">Image</label>
-                    <input type="file" id="image" name="articleImage" accept="image/*">
+                    <label for="content">Article Content</label>
+                    <textarea id="content" name="Content" value="<%= articleData.Content%>" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="content">Article Content</label>
-                    <textarea id="content" name="content" value="<%= articleData.Content%>" required></textarea>
+                    <label for="current-image">Current Image</label>
+                    <% if (articleData.articleImage) { %>
+                        <img src="<%= articleData.articleImage %>" alt="Current Article Image" style="max-width: 200px; max-height: 200px; margin-bottom: 10px;">
+                    <% } else { %>
+                        <p>No image currently associated with this article.</p>
+                    <% } %>
+                </div>
+                <div class="form-group">
+                    <label for="image">Update Image</label>
+                    <input type="file" id="image" name="articleImage" accept="image/*">
+                    <p class="help-text">Select a new image to replace the current one, or leave blank to keep the existing image.</p>
                 </div>
                 <div class="button-group">
                     <button type="submit" class="submit-btn">Update Article</button>

@@ -80,51 +80,48 @@ exports.loadEditArticle = async (req, res) => {
     }
 };
 
-exports.updateArticle= async (req, res) => {
+
+exports.updateArticle = async (req, res) => {
     try {
-        const {
-            Name,
-            Category,
-            Author,
-            Institution,
-            Description,
-            Content,
-        }= req.body
-
-        const articleImage = req.file;
-
-        if (!articleImage) {
-            // 'No file uploaded'
+        const articleId = req.body.id;
+        if (!articleId) {
+            return res.status(400).json({ message: "Article ID is required" });
         }
 
-        const imgurResponse = await multer.uploadToImgur(articleImage.buffer);
-        const imageUrl = imgurResponse.link;
-        const imageDeleteHash = imgurResponse.deletehash;
+        const existingArticle = await articleModel.findById(articleId);
+        if (!existingArticle) {
+            return res.status(404).json({ message: "Article not found" });
+        }
 
-        // if (article.imageDeleteHash) {
-        //     await multer.deleteFromImgur(article.imageDeleteHash);
-        // }
+        const updateObject = {
+            Name: req.body.Name,
+            Category: req.body.Category,
+            Author: req.body.Author,
+            Institution: req.body.Institution,
+            Description: req.body.Description,
+            Content: req.body.Content
+        };
 
-        // articleImage : imageUrl,
-        // imageDeleteHash : imageDeleteHash
+        if (req.file) {
+            const imgurResponse = await multer.uploadToImgur(req.file.buffer);
+            updateObject.ImageUrl = imgurResponse.link;
+            updateObject.ImageDeleteHash = imgurResponse.deletehash;
 
-        const article = new articleModel({
-            Name: Name,
-            Category: Category,
-            Author: Author,
-            Institution : Institution,
-            Description : Description,
-            Content : Content,
-            articleImage : imageUrl,
-            imageDeleteHash : imageDeleteHash
-            
-        });
-        console.log(article);
-        const articleDatas = await article.save();
-        res.redirect('/admin/article')
+            // Delete old image if it exists
+            if (existingArticle.ImageDeleteHash) {
+                await multer.deleteFromImgur(existingArticle.ImageDeleteHash);
+            }
+        }
 
+        const updatedArticle = await articleModel.findByIdAndUpdate(
+            articleId,
+            { $set: updateObject },
+            { new: true } 
+        );
+
+        res.redirect("/admin/article");
     } catch (err) {
-        console.error('Error on render:', err);
+        console.error('Error updating article:', err);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
