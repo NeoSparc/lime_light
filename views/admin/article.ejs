@@ -257,7 +257,8 @@
                         <div class="article-actions">
                             <a href="/admin/editArticle?id=<%= articleList[i]._id %>" class="edit-btn">Edit</a>
                             <a href="#" class="view-btn">View</a>
-                            <button class="delete-btn" onclick="confirmDelete(1)">Delete</button>
+                            <a href="/admin/article?id=<%= articleList[i]._id %>" class="delete-btn" >Delete</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -280,14 +281,28 @@
             mainContent.classList.toggle('active');
         });
 
-        function confirmDelete(articleId) {
-            if (confirm("Are you sure you want to delete this article?")) {
-                // Perform delete action
-                console.log(`Deleting article with ID: ${articleId}`);
-                // You would typically make an AJAX call to your server here
-                // After successful deletion, you might want to remove the article card from the DOM
+        function removeFromArticle(articleId) {
+    if (confirm("Are you sure you want to delete this article?")) {
+        // Perform the delete action using the fetch API with route parameters
+        fetch(`/admin/removeArticle/${articleId}`, {
+            method: 'DELETE',  // Specify the DELETE method
+        })
+        .then(response => response.json())  // Parse the JSON response
+        .then(data => {
+            if (data.success) {
+                console.log('Article deleted successfully');
+                // Optionally refresh the page or remove the deleted item from DOM
+                document.getElementById(`article-${articleId}`).remove();
+            } else {
+                console.error('Error deleting article:', data.message);
             }
-        }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+}
+
     </script>
 </body>
 </html>

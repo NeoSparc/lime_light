@@ -2,18 +2,39 @@ const adminModel = require('../models/adminModel');
 const bcrypt = require("bcrypt");
 
 exports.loadDashboard = async (req, res) => {
-    res.render('admin/dashboard')
+    try {
+        if (!req.session.id) {
+            return res.redirect('/admin');
+        }
+        res.render('admin/dashboard');
+      
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error' });
+    }
 }
 
 //login
 exports.loadLogin = async (req, res) => {
     try {
-        res.render('admin/login');
+        if (req.session.id) {
+            res.redirect('/admin/dashboard'); 
+        } else {
+            res.render('/admin/login');
+        }
     } catch (err) {
         console.error('Error on login:', err);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
+exports.getLogin = async (req, res) => {
+    try {
+            res.render('/admin/login');
+    } catch (err) {
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
 
 exports.adminLoginPost = async (req, res) => {
     try {
@@ -39,6 +60,9 @@ exports.adminLoginPost = async (req, res) => {
 //admin Create
 exports.loadAdminCreate = async (req, res) => {
     try {
+        if (!req.session.id) {
+            return res.redirect('/admin/login');
+        }
         res.render('admin/adminCreate');
     } catch (err) {
         console.error('Error on render:', err);
@@ -84,3 +108,9 @@ exports.adminCreatePost = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 }
+
+exports.logoutGet=(req,res)=>{
+    req.session.destroy()
+    res.redirect("/admin/login")
+}
+

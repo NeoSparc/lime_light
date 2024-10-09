@@ -3,347 +3,388 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Limelight</title>
+    <title>Your Website Title</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
+        /* Reset and base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #010101;
-            color: #eee;
             line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
         }
 
+        /* Top bar */
+        .top-bar {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 5px 0;
+            text-align: center;
+        }
+
+        /* Header */
+        header {
+            background-color: #34495e;
+            color: #ecf0f1;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #3498db;
+        }
+
+        /* Main content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 2rem 0;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .footer-section {
+            flex: 1;
+            margin-right: 2rem;
+            margin-bottom: 1rem;
+        }
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ecf0f1;
+            background-color: #34495e;
+            color: #ecf0f1;
+        }
+        .contact-form button {
+            background-color: #3498db;
+            color: #ecf0f1;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .contact-form button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            nav ul {
+                margin-top: 1rem;
+            }
+            nav ul li {
+                margin: 0 10px;
+            }
+            .footer-section {
+                flex: 100%;
+                margin-right: 0;
+            }
+        }
+        /* Slider styles */
         .slider {
             height: 100vh;
             position: relative;
             overflow: hidden;
         }
-
         .slider .list .item {
             position: absolute;
-            inset: 0;
+            inset: 0 0 0 0;
             opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+            transition: .5s;
         }
-
         .slider .list .item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .slider .list .item::after {
             content: '';
+            width: 100%;
+            height: 100%;
             position: absolute;
             left: 0;
-            right: 0;
             bottom: 0;
-            height: 70%;
-            background-image: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+            background-image: linear-gradient(to top, #000 0%, transparent);
         }
-
         .slider .list .item .content {
             position: absolute;
             left: 10%;
-            bottom: 10%;
-            width: 80%;
-            max-width: 600px;
+            top: 20%;
+            width: 500px;
+            max-width: 80%;
             z-index: 1;
         }
-
-        .slider .list .item .content p:first-child {
+        .slider .list .item .content p:nth-child(1) {
             text-transform: uppercase;
-            letter-spacing: 5px;
-            font-size: 0.8rem;
-            margin-bottom: 10px;
+            letter-spacing: 10px;
         }
-
         .slider .list .item .content h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 5rem;
+            margin: 0;
+            color: #fff;
         }
-
         .slider .list .item.active {
             opacity: 1;
-            z-index: 1;
+            z-index: 10;
         }
-
-        .arrows {
+        .slider .arrows {
             position: absolute;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            z-index: 2;
+            top: 30%;
+            right: 50px;
+            z-index: 100;
         }
-
-        .arrows button {
-            background-color: rgba(255, 255, 255, 0.3);
+        .slider .arrows button {
+            background-color: #eee5;
             border: none;
             width: 40px;
             height: 40px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            border-radius: 5px;
+            font-size: x-large;
+            color: #eee;
+            transition: .5s;
+        }
+        .slider .arrows button:hover {
+            background-color: #eee;
+            color: black;
         }
 
-        .arrows button:hover {
-            background-color: rgba(255, 255, 255, 0.5);
-        }
-
-        .thumbnail {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 2;
-        }
-
-        .thumbnail .item {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .thumbnail .item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .thumbnail .item.active {
-            border: 2px solid #fff;
-        }
-
-        .card-section {
-            padding: 50px 0;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .row {
+        /* Article cards styles */
+        .articles-container {
             display: flex;
             flex-wrap: wrap;
-            margin: -15px;
+            justify-content: space-between;
+            margin-top: 2rem;
         }
-
-        .col {
-            flex: 0 0 100%;
-            max-width: 100%;
-            padding: 15px;
+        .article-card {
+            width: calc(25% - 20px);
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
-
-        .card {
-            background-color: #1a1a1a;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
+        .article-card:hover {
             transform: translateY(-5px);
         }
-
-        .card img {
+        .article-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
-
-        .card-body {
-            padding: 20px;
+        .article-card .card-body {
+            padding: 1rem;
         }
-
-        .card-body p {
-            margin-bottom: 10px;
+        .article-card .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
         }
-
-        .card-body .btn {
+        .article-card .card-text {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .article-card .btn {
             display: inline-block;
-            padding: 5px 10px;
-            background-color: #bb86fc;
+            padding: 0.5rem 1rem;
+            background-color: #3498db;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
-            font-size: 0.8rem;
+            transition: background-color 0.3s ease;
+        }
+        .article-card .btn:hover {
+            background-color: #2980b9;
         }
 
-        @media screen and (min-width: 768px) {
-            .col {
-                flex: 0 0 50%;
-                max-width: 50%;
-            }
-
-            .slider .list .item .content h2 {
-                font-size: 4rem;
+        @media (max-width: 1024px) {
+            .article-card {
+                width: calc(33.33% - 20px);
             }
         }
 
-        @media screen and (min-width: 992px) {
-            .col {
-                flex: 0 0 25%;
-                max-width: 25%;
+        @media (max-width: 768px) {
+            .article-card {
+                width: calc(50% - 20px);
             }
-
             .slider .list .item .content h2 {
-                font-size: 5rem;
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .article-card {
+                width: 100%;
+            }
+            .slider .list .item .content h2 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- <%- include('layouts/header.ejs') %> -->
-    <div class="slider">
-        <div class="list">
-            <div class="item active">
-                <img src="https://muslimhype.com/wp-content/uploads/2022/12/Contribution-of-Islam-for-the-rise-of-Arabian-Culture.webp" alt="Articles">
-                <div class="content">
-                    <p>HIGHLIGHTS</p>
-                    <h2>ARTICLES</h2>
-                    <p>This section provides readers with a captivating journey through the complex realms of religion, culture, Sufism, history, and politics.</p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="https://c.wallhere.com/photos/e6/ae/digital_art_nature_trees_forest_painting_Japanese_branch_bridge-99425.jpg!d" alt="Art">
-                <div class="content">
-                    <p>HIGHLIGHTS</p>
-                    <h2>ART</h2>
-                    <p>Step into the vibrant field of creative expression with our captivating section that celebrates diverse forms of artistic endeavor.</p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="https://snu.edu.in/site/assets/files/10464/antique-quill-pen-writes-old-fashioned-calligraphy-generated-by-ai.1600x0.webp" alt="Literature">
-                <div class="content">
-                    <p>HIGHLIGHTS</p>
-                    <h2>LITERATURE</h2>
-                    <p>A humble attempt to showcase various talented writers coming up with blazing innovatory literary works.</p>
-                </div>
-            </div>
-        </div>
-        <div class="arrows">
-            <button id="prev">&lt;</button>
-            <button id="next">&gt;</button>
-        </div>
-        <div class="thumbnail">
-            <div class="item active">
-                <img src="https://muslimhype.com/wp-content/uploads/2022/12/Contribution-of-Islam-for-the-rise-of-Arabian-Culture.webp" alt="Articles">
-            </div>
-            <div class="item">
-                <img src="https://c.wallhere.com/photos/e6/ae/digital_art_nature_trees_forest_painting_Japanese_branch_bridge-99425.jpg!d" alt="Art">
-            </div>
-            <div class="item">
-                <img src="https://snu.edu.in/site/assets/files/10464/antique-quill-pen-writes-old-fashioned-calligraphy-generated-by-ai.1600x0.webp" alt="Literature">
-            </div>
-        </div>
+    <div class="top-bar">
+        Welcome to our website!
     </div>
+    
+    <header>
+        <div class="nav-container">
+            <div class="logo">Your Logo</div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/listArticle">Article</a></li>
+                    <li><a href="#art">Art</a></li>
+                    <li><a href="/aboutUs">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <section class="card-section">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <img src="/api/placeholder/400/320" alt="Product 1">
-                        <div class="card-body">
-                            <p>Author Name</p>
-                            <a href="#" class="btn">Category</a>
-                            <h5>Product Title</h5>
-                        </div>
+    <main>
+        <div class="slider">
+            <div class="list">
+                <div class="item active">
+                    <img src="https://muslimhype.com/wp-content/uploads/2022/12/Contribution-of-Islam-for-the-rise-of-Arabian-Culture.webp" alt="">
+                    <div class="content">
+                        <p>HIGHLIGHTS</p>
+                        <h2>ARTICLES</h2>
+                        <p>This section provides readers with a captivating journey through the complex realms of religion, culture, Sufism, history, and politics.</p>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="/api/placeholder/400/320" alt="Product 2">
-                        <div class="card-body">
-                            <p>Author Name</p>
-                            <a href="#" class="btn">Category</a>
-                            <h5>Product Title</h5>
-                        </div>
+                <div class="item">
+                    <img src="https://c.wallhere.com/photos/e6/ae/digital_art_nature_trees_forest_painting_Japanese_branch_bridge-99425.jpg!d" alt="">
+                    <div class="content">
+                        <p>HIGHLIGHTS</p>
+                        <h2>ART</h2>
+                        <p>Celebrate diverse forms of artistic endeavor, from interviews with creative minds to visually stunning photo essays and artwork showcases.</p>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="/api/placeholder/400/320" alt="Product 3">
-                        <div class="card-body">
-                            <p>Author Name</p>
-                            <a href="#" class="btn">Category</a>
-                            <h5>Product Title</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="/api/placeholder/400/320" alt="Product 4">
-                        <div class="card-body">
-                            <p>Author Name</p>
-                            <a href="#" class="btn">Category</a>
-                            <h5>Product Title</h5>
-                        </div>
+                <div class="item">
+                    <img src="https://snu.edu.in/site/assets/files/10464/antique-quill-pen-writes-old-fashioned-calligraphy-generated-by-ai.1600x0.webp" alt="">
+                    <div class="content">
+                        <p>HIGHLIGHTS</p>
+                        <h2>LITERATURE</h2>
+                        <p>Showcase various talented writers with innovative literary works including stories, poems, articles, and travelogues.</p>
                     </div>
                 </div>
             </div>
+            <div class="arrows">
+                <button id="prev"><</button>
+                <button id="next">></button>
+            </div>
         </div>
-    </section>
 
+        <div class="articles-container">
+            <% for(let i = 0; i < articleList.length; i++) { %>
+            <div class="article-card">
+                <img src="<%= articleList[i].articleImage %>" alt="Article Image">
+                <div class="card-body">
+                    <p class="card-text"><%= articleList[i].Author %></p>
+                    <h5 class="card-title"><%= articleList[i].Name %></h5>
+                    <a href="#" class="btn">Read more</a>
+                </div>
+            </div>
+            <%}%>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Brief description of your website or organization.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <form class="contact-form">
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" required></textarea>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </footer>
     <script>
+        // Slider functionality
         let items = document.querySelectorAll('.slider .list .item');
         let next = document.getElementById('next');
         let prev = document.getElementById('prev');
-        let thumbnails = document.querySelectorAll('.thumbnail .item');
-
-        let countItem = items.length;
-        let itemActive = 0;
-
+        let active = 0;
+        function loadShow(){
+            let stt = 0;
+            items[active].style.transform = `none`;
+            items[active].style.zIndex = 1;
+            items[active].style.opacity = 1;
+            for(var i = active + 1; i < items.length; i++){
+                stt++;
+                items[i].style.transform = `translateX(${120*stt}px) scale(${1 - 0.2*stt}) perspective(16px) rotateY(-1deg)`;
+                items[i].style.zIndex = -stt;
+                items[i].style.opacity = stt > 2 ? 0 : 0.6;
+            }
+            stt = 0;
+            for(var i = active - 1; i >= 0; i--){
+                stt++;
+                items[i].style.transform = `translateX(${-120*stt}px) scale(${1 - 0.2*stt}) perspective(16px) rotateY(1deg)`;
+                items[i].style.zIndex = -stt;
+                items[i].style.opacity = stt > 2 ? 0 : 0.6;
+            }
+        }
+        loadShow();
         next.onclick = function(){
-            itemActive = (itemActive + 1) % countItem;
-            showSlider();
+            active = active + 1 < items.length ? active + 1 : active;
+            loadShow();
         }
-
         prev.onclick = function(){
-            itemActive = (itemActive - 1 + countItem) % countItem;
-            showSlider();
+            active = active - 1 >= 0 ? active - 1 : active;
+            loadShow();
         }
-
-        let refreshInterval = setInterval(() => {
-            next.click();
-        }, 5000)
-
-        function showSlider(){
-            let itemActiveOld = document.querySelector('.slider .list .item.active');
-            let thumbnailActiveOld = document.querySelector('.thumbnail .item.active');
-            itemActiveOld.classList.remove('active');
-            thumbnailActiveOld.classList.remove('active');
-
-            items[itemActive].classList.add('active');
-            thumbnails[itemActive].classList.add('active');
-
-            clearInterval(refreshInterval);
-            refreshInterval = setInterval(() => {
-                next.click();
-            }, 5000)
-        }
-
-        thumbnails.forEach((thumbnail, index) => {
-            thumbnail.addEventListener('click', () => {
-                itemActive = index;
-                showSlider();
-            })
-        })
     </script>
 </body>
 </html>

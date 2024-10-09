@@ -209,7 +209,7 @@
     </style>
 </head>
 <body>
-    <%= include('layouts/sideNav.ejs') %>
+    <%- include('layouts/sideNav.ejs') %>
         <main class="main-content">
             <h1 class="page-title">Edit Article</h1>
             <form class="edit-article-form" action="/admin/editArticle" method="post" enctype="multipart/form-data">
@@ -253,7 +253,6 @@
                 </div>
                 <div class="button-group">
                     <button type="submit" class="submit-btn">Update Article</button>
-                    <button type="button" class="delete-btn" onclick="confirmDelete()">Delete Article</button>
                 </div>
             </form>
         </main>
@@ -272,12 +271,7 @@
             mainContent.classList.toggle('active');
         });
 
-        function confirmDelete() {
-            if (confirm("Are you sure you want to delete this article?")) {
-                // Perform delete action
-                console.log("Article deleted");
-            }
-        }
+        
     </script>
 </body>
 </html>

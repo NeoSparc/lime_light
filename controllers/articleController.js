@@ -4,14 +4,41 @@ const articleModel = require('../models/articleModel')
 //Articles
 exports.loadArticles = async (req, res) => {
     try {
-        const articleList = await articleModel.find({});
-      res.render('admin/article',{articleList:articleList})
+        if (!req.session.id) {
+            return res.redirect('/admin/login');
+        }
+        else{
+            const articleList = await articleModel.find({});
+            res.render('admin/article',{articleList:articleList})
+        }
       
     } catch (err) {
         console.error('Error on render', err);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
+exports.removeArticle = async (req, res) => {
+    try {
+       
+        // console.log(req.query.id);
+        const articleId = req.query.id
+        console.log(articleId);
+        // Proceed to delete the article using the ID
+        const deleteArticle = await articleModel.deleteOne({ _id: articleId });
+
+        if (deleteArticle.deletedCount === 0) {
+            return res.status(404).json({ success: false, message: 'Article not found' });
+        }
+
+        // Send success response
+        res.status(200).json({ success: true, message: 'Article removed successfully' });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+};
+
 
 exports.loadaddArticles= async (req, res) => {
     try {

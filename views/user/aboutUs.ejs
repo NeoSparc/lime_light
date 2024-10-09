@@ -1,70 +1,163 @@
-<section style="background-color: #eeeae4;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - The Limelight</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto:wght@300;400&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            color: #f4f4f4;
+            text-align: center;
+            padding: 2em 0;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 80%);
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin-bottom: 0.2em;
+            position: relative;
+        }
+        .tagline {
+            font-style: italic;
+            margin-bottom: 1em;
+            font-size: 1.2em;
+        }
+        .content {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 3em;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+            margin-top: -50px;
+        }
+        .section {
+            margin-bottom: 3em;
+            position: relative;
+        }
+        .section::before {
+            content: "";
+            position: absolute;
+            left: -20px;
+            top: 0;
+            height: 100%;
+            width: 5px;
+            background: linear-gradient(to bottom, #333, transparent);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            border-bottom: none;
+            padding-bottom: 0.5em;
+            font-size: 2.2em;
+            color: #333;
+            margin-bottom: 0.5em;
+        }
+        .section p, .section ul {
+            font-size: 1.1em;
+            color: #444;
+        }
+        .section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .section ul li {
+            margin-bottom: 0.5em;
+            padding-left: 25px;
+            position: relative;
+        }
+        .section ul li::before {
+            content: "•";
+            color: #333;
+            font-size: 1.5em;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+        @media (max-width: 768px) {
+            .content {
+                padding: 2em;
+                margin-top: -30px;
+            }
+            h1 {
+                font-size: 2.5em;
+            }
+            .section::before {
+                left: -10px;
+            }
+        }
+        @media (max-width: 480px) {
+            .content {
+                padding: 1.5em;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .section h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>The Limelight</h1>
+        <p class="tagline">Illuminating Minds, Inspiring Thoughts</p>
+    </header>
     <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-10" style="height: 90px;">
-              
-            </div>
-            <div class="col-md-4">
-    
-            </div>
-            <div class="col-md-5 col-sm-2"  >
-    
-    <nav class="navbar navbar-expand-lg mt-4">
-      <div class="container-fluid">
-    <strong>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon" style="width: 1rem;"></span>
-        </button>
-        <div class="flexing collapse navbar-collapse" id="navbarNavDropdown" >
-          <ul class="navbar-nav ">
-            <li class="nav-item ">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
-            </li>
-            <li class="nav-item dropdown" >
-              <a class="nav-link dropdown-toggle btn btn-secondary" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-               Article
-              </a>
-              <ul class="dropdown-menu" >
-                <li><a class="dropdown-item btn btn-secondary" href="/">Article</a></li>
-                <li><a class="dropdown-item btn btn-secondary" href="/">Religion and culture</a></li>
-                <li><a class="dropdown-item btn btn-secondary" href="/">Sufism</a></li>
-                <li><a class="dropdown-item btn btn-secondary" href="/">History</a></li>
-                <li><a class="dropdown-item btn btn-secondary" href="/">Politics</a></li>
-              </ul>
-            </li>
-             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle btn btn-secondary" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Art
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item btn btn-secondary" href="/">Art</a></li>
-                <li><a class="dropdown-item btn btn-secondary" href="/">Interview</a></li>
-                <li><a class="dropdown-item btn btn-secondary" href="/">Photo essay</a></li>
-              </ul>
-            </li>
-             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle btn btn-secondary" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-               Literature
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item btn btn-secondary" href="/">Literature</a></li>
-                <li><a class="dropdown-item btn btn-secondary" href="/">Poem</a></li>
-                <li><a class="dropdown-item btn btn-secondary" href="/">Short Story</a></li>
-                <li><a class="dropdown-item btn btn-secondary" href="/">Moral Story</a></li>
-                <li><a class="dropdown-item btn btn-secondary" href="/">Travelogue</a></li>
-              </ul>
-            </li>
-    
-             <li class="nav-item">
-              <a class="nav-link btn btn-info" href="/aboutus">About us</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    
-            </div>  
-    </strong>
+        <div class="content">
+            <section class="section">
+                <h2>Our Vision</h2>
+                <p>The Limelight aspires to be the premier web magazine in English, dedicated to showcasing original, incisive, and open-minded perspectives on philosophy, culture, arts, and religion. We aim to create a platform where innovative ideas can flourish and engage readers in meaningful discourse.</p>
+            </section>
+            <section class="section">
+                <h2>Our Mission</h2>
+                <p>Our mission is twofold: to curate thought-provoking content that challenges conventional wisdom and to provide a stage for emerging talented writers. We strive to present a diverse array of literary works, including captivating stories, evocative poems, controversial articles, and engaging travelogues.</p>
+            </section>
+            <section class="section">
+                <h2>What Sets Us Apart</h2>
+                <ul>
+                    <li>Commitment to originality and innovation in thought</li>
+                    <li>Platform for both established and emerging voices</li>
+                    <li>Interdisciplinary approach to culture and ideas</li>
+                    <li>Fostering open dialogue and intellectual curiosity</li>
+                </ul>
+            </section>
+            <section class="section">
+                <h2>Join Our Community</h2>
+                <p>Whether you're a reader seeking to expand your horizons or a writer looking to share your unique perspective, The Limelight welcomes you. Together, let's explore the depths of human creativity and intellect, shining a light on ideas that truly matter.</p>
+            </section>
         </div>
     </div>
-    </section>
+</body>
+</html>

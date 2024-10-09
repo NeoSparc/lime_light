@@ -11,6 +11,9 @@ const articleController = require('../controllers/articleController');
 adminRouter.get('/',adminController.loadLogin);
 adminRouter.post('/login',adminController.adminLoginPost);
 
+//logout
+adminRouter.get('/logout',adminController.logoutGet);
+
 //Dashboard
 adminRouter.get('/dashboard',adminController.loadDashboard);
 
@@ -26,6 +29,7 @@ adminRouter.post('/addArticle', upload.single('articleImage'),articleController.
 //edit
 adminRouter.get('/editArticle',articleController.loadEditArticle);
 adminRouter.post('/editArticle', upload.single('articleImage'),articleController.updateArticle);
-
+//remove
+adminRouter.delete('/article',articleController.removeArticle);
 
 module.exports = adminRouter
