@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const articleSchema = mongoose.Schema({
     
-    Name: {
+      Name: {
         type: String,
         required: true,
       },
@@ -25,9 +25,12 @@ const articleSchema = mongoose.Schema({
         type: String,
         required: true,
       },
-      image: {
+      articleImage: {
         type: String,
         required: true,
+      },
+      imageDeleteHash:{
+        type:String,
       },
       createdAt: {
         type: Date,

@@ -1,3 +1,4 @@
+const multer = require('../middlewares/multer')
 const articleModel = require('../models/articleModel')
 
 //Articles
@@ -30,8 +31,19 @@ exports.addArticlesPost= async (req, res) => {
             Institution,
             Description,
             Content,
-            image
         }= req.body
+
+        // const articleImage = req.file;
+
+        // if (!articleImage) {
+        //     // 'No file uploaded'
+        // }
+
+        const imgurResponse = await multer.uploadToImgur(articleImage.buffer);
+        const imageUrl = imgurResponse.link;
+        const imageDeleteHash = imgurResponse.deletehash;
+        
+
         const article = new articleModel({
             Name: Name,
             Category: Category,
@@ -39,7 +51,8 @@ exports.addArticlesPost= async (req, res) => {
             Institution : Institution,
             Description : Description,
             Content : Content,
-            image : image,
+            articleImage : imageUrl,
+            imageDeleteHash : imageDeleteHash
             
         });
         const articleDatas = await article.save();
@@ -75,9 +88,25 @@ exports.updateArticle= async (req, res) => {
             Institution,
             Description,
             Content,
-            image
         }= req.body
-        console.log(req.body);
+
+        const articleImage = req.file;
+
+        if (!articleImage) {
+            // 'No file uploaded'
+        }
+
+        const imgurResponse = await multer.uploadToImgur(articleImage.buffer);
+        const imageUrl = imgurResponse.link;
+        const imageDeleteHash = imgurResponse.deletehash;
+
+        // if (article.imageDeleteHash) {
+        //     await multer.deleteFromImgur(article.imageDeleteHash);
+        // }
+
+        // articleImage : imageUrl,
+        // imageDeleteHash : imageDeleteHash
+
         const article = new articleModel({
             Name: Name,
             Category: Category,
