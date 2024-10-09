@@ -68,7 +68,6 @@ exports.addArticlesPost= async (req, res) => {
 exports.loadEditArticle = async (req, res) => {
     try {
         const id = req.query.id
-        console.log(id);
         const articleData = await articleModel.findById({ _id: id });
       
       if (articleData) {
@@ -93,19 +92,16 @@ exports.updateArticle = async (req, res) => {
             return res.status(404).json({ message: "Article not found" });
         }
 
-        const updateObject = {
-            Name: req.body.Name,
-            Category: req.body.Category,
-            Author: req.body.Author,
-            Institution: req.body.Institution,
-            Description: req.body.Description,
-            Content: req.body.Content
-        };
+        const { Name,Category,Author,Institution,Description,Content } = req.body;
 
-        if (req.file) {
-            const imgurResponse = await multer.uploadToImgur(req.file.buffer);
-            updateObject.ImageUrl = imgurResponse.link;
-            updateObject.ImageDeleteHash = imgurResponse.deletehash;
+        const articleImage = req.file;
+        let imageUrl;
+        let imageDeleteHash;
+
+        if (articleImage) {
+            const imgurResponse = await multer.uploadToImgur(articleImage.buffer);
+            imageUrl = imgurResponse.link;
+            imageDeleteHash = imgurResponse.deletehash;
 
             // Delete old image if it exists
             if (existingArticle.ImageDeleteHash) {
@@ -113,9 +109,18 @@ exports.updateArticle = async (req, res) => {
             }
         }
 
-        const updatedArticle = await articleModel.findByIdAndUpdate(
-            articleId,
-            { $set: updateObject },
+        const updatedArticle = await articleModel.findOneAndUpdate(
+            { _id:articleId },
+            {
+                Name,
+                Category,
+                Author,
+                Institution,
+                Description,
+                Content,
+                articleImage:imageUrl,
+                imageDeleteHash
+            },
             { new: true } 
         );
 
