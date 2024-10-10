@@ -3,6 +3,9 @@ const articleModel = require('../models/articleModel')
 
 exports.loadHome = async(req,res)=>{
     try{
+        if (req.session.email) {
+            return res.redirect('/admin/dashboard');
+        }
         const articleList = await articleModel.find({});
         res.render('user/home',{articleList:articleList})//articleList:articleList
     }
@@ -14,8 +17,10 @@ exports.loadHome = async(req,res)=>{
 
 exports.getAboutUs = async (req, res) => {
     try {
-       
-             res.render('user/aboutUs');
+        if (req.session.email) {
+            return res.redirect('/admin/dashboard');
+        }
+        res.render('user/aboutUs');
         
       
     } catch (error) {
@@ -25,8 +30,10 @@ exports.getAboutUs = async (req, res) => {
 
 exports.getArticleDetails = async (req, res) => {
     try {
+        if (req.session.email) {
+            return res.redirect('/admin/dashboard');
+        }
         const articleId = req.query.id;
-        console.log(articleId);
         
         // Use findById directly with articleId
         const articleData = await articleModel.findById(articleId);

@@ -5,7 +5,7 @@ const articleModel = require('../models/articleModel')
 exports.loadArticles = async (req, res) => {
     try {
         if (!req.session.email) {
-            return res.redirect('/admin/login');
+            return res.redirect('/admin');
         }
         else{
             const articleList = await articleModel.find({});
@@ -47,6 +47,9 @@ exports.removeArticle = async (req, res) => {
 
 exports.loadaddArticles= async (req, res) => {
     try {
+        if (!req.session.email) {
+            return res.redirect('/admin');
+        }
         res.render('admin/addArticle');
     } catch (err) {
         console.error('Error on render:', err);
@@ -99,6 +102,9 @@ exports.addArticlesPost= async (req, res) => {
 
 exports.loadEditArticle = async (req, res) => {
     try {
+        if (!req.session.email) {
+            return res.redirect('/admin');
+        }
         const id = req.query.id
         const articleData = await articleModel.findById({ _id: id });
       

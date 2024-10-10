@@ -27,15 +27,6 @@ exports.loadLogin = async (req, res) => {
     }
 };
 
-exports.getLogin = async (req, res) => {
-    try {
-            res.render('/admin/login');
-    } catch (err) {
-        res.status(500).json({ message: 'Internal server error' });
-    }
-};
-
-
 exports.adminLoginPost = async (req, res) => {
     try {
         const {Email,Password} = req.body
@@ -62,7 +53,7 @@ exports.adminLoginPost = async (req, res) => {
 exports.loadAdminCreate = async (req, res) => {
     try {
         if (!req.session.email) {
-            return res.redirect('/admin/login');
+            return res.redirect('/admin');
         }
         res.render('admin/adminCreate');
     } catch (err) {
