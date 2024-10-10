@@ -292,29 +292,14 @@
     </style>
 </head>
 <body>
-    <div class="top-bar">
-        Welcome to Limelight!
-    </div>
     
-    <header>
-        <div class="nav-container">
-            <div class="logo"><img src="https://i.ibb.co/qsPcZ5r/download-5.png"  alt="THE LIME LIGHT"></div>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="#article">Article</a></li>
-                    <li><a href="#art">Art</a></li>
-                    <li><a href="/aboutUs">About Us</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <%- include('layouts/header.ejs') %>
 
     <main>
         <div class="slider">
             <div class="list">
                 <div class="item active">
-                    <img src="https://muslimhype.com/wp-content/uploads/2022/12/Contribution-of-Islam-for-the-rise-of-Arabian-Culture.webp" alt="">
+                    <img src="https://i.ibb.co/6rtypmw/Contribution-of-Islam-for-the-rise-of-Arabian-Culture.png"alt="wallpaper">
                     <div class="content">
                         <p>HIGHLIGHTS</p>
                         <h2>ARTICLES</h2>
@@ -329,15 +314,7 @@
                         <p>Celebrate diverse forms of artistic endeavor, from interviews with creative minds to visually stunning photo essays and artwork showcases.</p>
                     </div>
                 </div>
-                <div class="item">
-                    <img src="https://snu.edu.in/site/assets/files/10464/antique-quill-pen-writes-old-fashioned-calligraphy-generated-by-ai.1600x0.webp" alt="">
-                    <div class="content">
-                        <p>HIGHLIGHTS</p>
-                        <h2>LITERATURE</h2>
-                        <p>Showcase various talented writers with innovative literary works including stories, poems, articles, and travelogues.</p>
-                    </div>
-                </div>
-            </div>
+                
             <div class="arrows">
                 <button id="prev"><</button>
                 <button id="next">></button>
@@ -359,22 +336,7 @@
         </div>
     </main>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>About Us</h3>
-                <p>The Limelight aspires to be the premier web magazine in English, dedicated to showcasing original, incisive, and open-minded perspectives on philosophy, culture, arts, and religion. We aim to create a platform where innovative ideas can flourish and engage readers in meaningful discourse.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <form class="contact-form">
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" required></textarea>
-                    <button type="submit">Send</button>
-                </form>
-            </div>
-        </div>
-    </footer>
+    <%- include('layouts/footer.ejs') %>
     <script>
         // Slider functionality
         let items = document.querySelectorAll('.slider .list .item');
