@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Lime Light</title>
+    <title>Lime Light</title>
     <style>
         /* Reset and base styles */
         * {
@@ -293,7 +293,7 @@
 </head>
 <body>
     <div class="top-bar">
-        Welcome to our The Limelight!
+        Welcome to Limelight!
     </div>
     
     <header>
@@ -352,7 +352,7 @@
                     <span class="category"><%= articleList[i].Category %></span>
                     <h3 class="card-title"><%= articleList[i].Name %></h3>
                     <p class="author">By <%= articleList[i].Author %></p>
-                    <a href="/user/articleDetails?id=<%= articleList[i]._id%>" class="btn">Read more</a>
+                    <a href="/articleDetails?id=<%= articleList[i]._id%>" class="btn">Read more</a>
                 </div>
             </div>
             <%}%>
