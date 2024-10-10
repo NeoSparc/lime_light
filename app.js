@@ -1,14 +1,17 @@
 const express = require('express');
 require('dotenv').config();
 const dbConnect = require('./config/connection');
+const mongoStore = require('connect-mongo');
 const session=require('express-session');
 const nocache=require('nocache');
+const cors = require('cors');
 const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 3000; 
 const secret = process.env.SECRET
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -16,6 +19,7 @@ app.use(session({
     secret,
     resave: false,
     saveUninitialized: true,
+    store: mongoStore.create({ mongoUrl: process.env.MONGOURL })
 }))
 app.use(nocache())
 

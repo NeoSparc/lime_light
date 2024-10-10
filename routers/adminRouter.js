@@ -2,7 +2,7 @@ const multer = require('multer');
 const express = require('express')
 const adminRouter = express.Router()
 const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage, limits: { fileSize: 5 * 1024 * 1024 } });
 
 const adminController = require('../controllers/adminControllers');
 const articleController = require('../controllers/articleController');
