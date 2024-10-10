@@ -1,58 +1,16 @@
 <footer>
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <div class="footer-logo">The Lime Light</div>
-                <p>Illuminating minds through art, literature, and culture.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Articles</a></li>
-                    <li><a href="#">Art</a></li>
-                    <li><a href="#">Literature</a></li>
-                    <li><a href="#">About Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-section contact-info">
-                <h3>Contact Us</h3>
-                <p>Email: info@thelimelight.com</p>
-                <p>Phone: +1 (123) 456-7890</p>
-                <p>Address: 123 Lime Street, City, Country</p>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <div class="social-links">
-                    <a href="#" aria-label="Facebook">&#xf39e;</a>
-                    <a href="#" aria-label="Twitter">&#xf099;</a>
-                    <a href="#" aria-label="Instagram">&#xf16d;</a>
-                    <a href="#" aria-label="LinkedIn">&#xf0e1;</a>
-                </div>
-            </div>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>About Us</h3>
+            <p>The Limelight aspires to be the premier web magazine in English, dedicated to showcasing original, incisive, and open-minded perspectives on philosophy, culture, arts, and religion. We aim to create a platform where innovative ideas can flourish and engage readers in meaningful discourse.</p>
         </div>
-        <div class="copyright">
-            <p>&copy; 2024 The Lime Light. All rights reserved.</p>
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <form class="contact-form">
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
         </div>
     </div>
 </footer>
-
-<script>
-    const header = document.querySelector('header');
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('nav ul');
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-
-    menuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('show');
-    });
-</script>
-</body>
-</html>

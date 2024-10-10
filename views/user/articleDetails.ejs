@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=articleData.Name%> - The Limelight</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        /* Top bar */
+        .top-bar {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 5px 0;
+            text-align: center;
+        }
+
+        /* Header */
+        header {
+            background-color: #34495e;
+            color: #ecf0f1;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            width: 150px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #3498db;
+        }
+
+        /* Article styles */
+        .article-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 20px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .article-meta {
+            padding: 2rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .article-category {
+            display: inline-block;
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .article-author {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-bottom: 0.5rem;
+        }
+
+        .article-institution {
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+
+        .article-description {
+            font-size: 1.1rem;
+            color: #34495e;
+            border-left: 3px solid #3498db;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-content {
+            padding: 2rem;
+            font-size: 1.1rem;
+            color: #2c3e50;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 2rem 0;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1;
+            margin-right: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ecf0f1;
+            background-color: #34495e;
+            color: #ecf0f1;
+        }
+
+        .contact-form button {
+            background-color: #3498db;
+            color: #ecf0f1;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+
+            .article-image {
+                height: 300px;
+            }
+
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-meta, .article-content {
+                padding: 1.5rem;
+            }
+
+            .footer-section {
+                flex: 100%;
+                margin-right: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .article-image {
+                height: 200px;
+            }
+
+            .article-title {
+                font-size: 1.8rem;
+            }
+
+            .article-meta, .article-content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        Welcome to The Limelight!
+    </div>
+    
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="/path/to/your/logo.png" alt="The Limelight Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/listArticle">Articles</a></li>
+                    <li><a href="#art">Art</a></li>
+                    <li><a href="/aboutUs">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="article-container">
+        <img src="<%= articleData.articleImage %>" alt="Article Image" class="article-image">
+        <div class="article-meta">
+            <span class="article-category"><%= articleData.Category %></span>
+            <h1 class="article-title"><%= articleData.Name %></h1>
+            <p class="article-author">By <%= articleData.Author %></p>
+            <p class="article-institution"><%= articleData.Institution %></p>
+            <p class="article-description"><%= articleData.Description %></p>
+        </div>
+        <div class="article-content">
+            <p><%= articleData.Content %></p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>The Limelight aspires to be the premier web magazine in English, dedicated to showcasing original, incisive, and open-minded perspectives on philosophy, culture, arts, and religion. We aim to create a platform where innovative ideas can flourish and engage readers in meaningful discourse.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <form class="contact-form">
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" required></textarea>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

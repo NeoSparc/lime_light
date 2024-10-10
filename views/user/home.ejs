@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website Title</title>
+    <title>The Lime Light</title>
     <style>
         /* Reset and base styles */
         * {
@@ -44,8 +44,15 @@
             padding: 0 20px;
         }
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+            width: 150px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
         nav ul {
             display: flex;
@@ -199,20 +206,21 @@
 
         /* Article cards styles */
         .articles-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
             margin-top: 2rem;
         }
         .article-card {
-            width: calc(25% - 20px);
-            margin-bottom: 20px;
             background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .article-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
         .article-card img {
             width: 100%;
@@ -220,27 +228,42 @@
             object-fit: cover;
         }
         .article-card .card-body {
-            padding: 1rem;
+            padding: 1.5rem;
+        }
+        .article-card .category {
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 0.8rem;
         }
         .article-card .card-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: #2c3e50;
+            font-weight: bold;
         }
-        .article-card .card-text {
+        .article-card .author {
             font-size: 0.9rem;
-            color: #666;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
         }
         .article-card .btn {
             display: inline-block;
-            padding: 0.5rem 1rem;
-            background-color: #3498db;
+            padding: 0.6rem 1.2rem;
+            background-color: #2c3e50;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s ease;
+            font-weight: bold;
         }
         .article-card .btn:hover {
-            background-color: #2980b9;
+            background-color: #34495e;
         }
 
         @media (max-width: 1024px) {
@@ -270,16 +293,16 @@
 </head>
 <body>
     <div class="top-bar">
-        Welcome to our website!
+        Welcome to our The Limelight!
     </div>
     
     <header>
         <div class="nav-container">
-            <div class="logo">Your Logo</div>
+            <div class="logo"><img src="https://i.ibb.co/qsPcZ5r/download-5.png"  alt="THE LIME LIGHT"></div>
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/listArticle">Article</a></li>
+                    <li><a href="#article">Article</a></li>
                     <li><a href="#art">Art</a></li>
                     <li><a href="/aboutUs">About Us</a></li>
                 </ul>
@@ -326,9 +349,10 @@
             <div class="article-card">
                 <img src="<%= articleList[i].articleImage %>" alt="Article Image">
                 <div class="card-body">
-                    <p class="card-text"><%= articleList[i].Author %></p>
-                    <h5 class="card-title"><%= articleList[i].Name %></h5>
-                    <a href="#" class="btn">Read more</a>
+                    <span class="category"><%= articleList[i].Category %></span>
+                    <h3 class="card-title"><%= articleList[i].Name %></h3>
+                    <p class="author">By <%= articleList[i].Author %></p>
+                    <a href="/user/articleDetails?id=<%= articleList[i]._id%>" class="btn">Read more</a>
                 </div>
             </div>
             <%}%>
@@ -339,7 +363,7 @@
         <div class="footer-container">
             <div class="footer-section">
                 <h3>About Us</h3>
-                <p>Brief description of your website or organization.</p>
+                <p>The Limelight aspires to be the premier web magazine in English, dedicated to showcasing original, incisive, and open-minded perspectives on philosophy, culture, arts, and religion. We aim to create a platform where innovative ideas can flourish and engage readers in meaningful discourse.</p>
             </div>
             <div class="footer-section">
                 <h3>Contact Us</h3>

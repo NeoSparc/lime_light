@@ -22,3 +22,22 @@ exports.getAboutUs = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 }
+
+exports.getArticleDetails = async (req, res) => {
+    try {
+        const articleId = req.query.id;
+        console.log(articleId);
+        
+        // Use findById directly with articleId
+        const articleData = await articleModel.findById(articleId);
+        
+        if (!articleData) {
+            return res.status(404).json('Article not found');
+        }
+        
+        res.render('user/articleDetails', { articleData });
+    } catch (err) {
+        console.log('Error in fetching article', err);
+        res.status(500).json('Internal server error');
+    }
+}
