@@ -138,7 +138,7 @@
         }
         /* Slider styles */
         .slider {
-            height: 100vh;
+            height: 70vh;
             position: relative;
             overflow: hidden;
         }
@@ -146,7 +146,8 @@
             position: absolute;
             inset: 0 0 0 0;
             opacity: 0;
-            transition: .5s;
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            transform: scale(1.1);
         }
         .slider .list .item img {
             width: 100%;
@@ -160,48 +161,99 @@
             position: absolute;
             left: 0;
             bottom: 0;
-            background-image: linear-gradient(to top, #000 0%, transparent);
+            background-image: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
         }
         .slider .list .item .content {
             position: absolute;
             left: 10%;
-            top: 20%;
-            width: 500px;
-            max-width: 80%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 80%;
+            max-width: 800px;
             z-index: 1;
+            text-align: center;
+        }
+        .slider .list .item .content p,
+        .slider .list .item .content h2 {
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         .slider .list .item .content p:nth-child(1) {
             text-transform: uppercase;
-            letter-spacing: 10px;
+            letter-spacing: 5px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
         }
         .slider .list .item .content h2 {
-            font-size: 5rem;
-            margin: 0;
-            color: #fff;
+            font-size: 4rem;
+            margin: 0 0 1rem;
+            letter-spacing: 2px;
+        }
+        .slider .list .item .content p:last-child {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
         .slider .list .item.active {
             opacity: 1;
             z-index: 10;
+            transform: scale(1);
         }
         .slider .arrows {
             position: absolute;
-            top: 30%;
+            top: 50%;
+            left: 50px;
             right: 50px;
+            transform: translateY(-50%);
             z-index: 100;
+            display: flex;
+            justify-content: space-between;
         }
         .slider .arrows button {
-            background-color: #eee5;
+            background-color: rgba(255,255,255,0.3);
             border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 5px;
-            font-size: x-large;
-            color: #eee;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            color: #fff;
             transition: .5s;
+            cursor: pointer;
         }
         .slider .arrows button:hover {
-            background-color: #eee;
-            color: black;
+            background-color: rgba(255,255,255,0.5);
+        }
+
+        /* Responsive design updates */
+        @media (max-width: 768px) {
+            .slider {
+                height: 50vh;
+            }
+            .slider .list .item .content h2 {
+                font-size: 2.5rem;
+            }
+            .slider .list .item .content p:last-child {
+                font-size: 1rem;
+            }
+            .slider .arrows {
+                left: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slider {
+                height: 40vh;
+            }
+            .slider .list .item .content h2 {
+                font-size: 2rem;
+            }
+            .slider .list .item .content p:nth-child(1) {
+                font-size: 0.8rem;
+            }
+            .slider .list .item .content p:last-child {
+                font-size: 0.9rem;
+            }
         }
 
         /* Article cards styles */
@@ -299,7 +351,7 @@
         <div class="slider">
             <div class="list">
                 <div class="item active">
-                    <img src="https://i.ibb.co/6rtypmw/Contribution-of-Islam-for-the-rise-of-Arabian-Culture.png"alt="wallpaper">
+                    <img src="https://i.ibb.co/6rtypmw/Contribution-of-Islam-for-the-rise-of-Arabian-Culture.png" alt="Articles">
                     <div class="content">
                         <p>HIGHLIGHTS</p>
                         <h2>ARTICLES</h2>
@@ -307,7 +359,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="https://c.wallhere.com/photos/e6/ae/digital_art_nature_trees_forest_painting_Japanese_branch_bridge-99425.jpg!d" alt="">
+                    <img src="https://c.wallhere.com/photos/e6/ae/digital_art_nature_trees_forest_painting_Japanese_branch_bridge-99425.jpg!d" alt="Art">
                     <div class="content">
                         <p>HIGHLIGHTS</p>
                         <h2>ART</h2>
@@ -315,7 +367,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="https://i.ibb.co/tKwfKkV/antique-quill-pen-writes-old-fashioned-calligraphy-generated-by-ai-24640-80756.jpg" alt="">
+                    <img src="https://i.ibb.co/tKwfKkV/antique-quill-pen-writes-old-fashioned-calligraphy-generated-by-ai-24640-80756.jpg" alt="Literature">
                     <div class="content">
                         <p>HIGHLIGHTS</p>
                         <h2>LITERATURE</h2>
@@ -324,8 +376,8 @@
                 </div>
             </div>
             <div class="arrows">
-                <button id="prev"><</button>
-                <button id="next">></button>
+                <button id="prev">&lt;</button>
+                <button id="next">&gt;</button>
             </div>
         </div>
 
@@ -351,34 +403,33 @@
         let next = document.getElementById('next');
         let prev = document.getElementById('prev');
         let active = 0;
-        function loadShow(){
-            let stt = 0;
-            items[active].style.transform = `none`;
-            items[active].style.zIndex = 1;
-            items[active].style.opacity = 1;
-            for(var i = active + 1; i < items.length; i++){
-                stt++;
-                items[i].style.transform = `translateX(${120*stt}px) scale(${1 - 0.2*stt}) perspective(16px) rotateY(-1deg)`;
-                items[i].style.zIndex = -stt;
-                items[i].style.opacity = stt > 2 ? 0 : 0.6;
-            }
-            stt = 0;
-            for(var i = active - 1; i >= 0; i--){
-                stt++;
-                items[i].style.transform = `translateX(${-120*stt}px) scale(${1 - 0.2*stt}) perspective(16px) rotateY(1deg)`;
-                items[i].style.zIndex = -stt;
-                items[i].style.opacity = stt > 2 ? 0 : 0.6;
+        
+        function loadShow() {
+            items[active].classList.add('active');
+            for (let i = 0; i < items.length; i++) {
+                if (i !== active) {
+                    items[i].classList.remove('active');
+                }
             }
         }
+
+        function nextSlide() {
+            active = (active + 1) % items.length;
+            loadShow();
+        }
+
+        function prevSlide() {
+            active = (active - 1 + items.length) % items.length;
+            loadShow();
+        }
+
+        next.onclick = nextSlide;
+        prev.onclick = prevSlide;
+
+        // Auto-change effect
+        setInterval(nextSlide, 5000);  // Change slide every 5 seconds
+
         loadShow();
-        next.onclick = function(){
-            active = active + 1 < items.length ? active + 1 : active;
-            loadShow();
-        }
-        prev.onclick = function(){
-            active = active - 1 >= 0 ? active - 1 : active;
-            loadShow();
-        }
     </script>
 </body>
 </html>
