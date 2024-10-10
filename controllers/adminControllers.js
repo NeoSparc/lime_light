@@ -1,4 +1,6 @@
 const adminModel = require('../models/adminModel');
+const articleModel = require('../models/articleModel')
+
 const bcrypt = require("bcrypt");
 
 exports.loadDashboard = async (req, res) => {
@@ -6,7 +8,11 @@ exports.loadDashboard = async (req, res) => {
         if (!req.session.email) {
             return res.redirect('/admin');
         }
-        res.render('admin/dashboard');
+        const admins = await adminModel.find();
+        const articles = await articleModel.find();
+        const totalAdmins = admins.length;
+        const totalArticles = articles.length;
+        res.render('admin/dashboard', { totalAdmins: totalAdmins, totalArticles:totalArticles });
       
     } catch (error) {
         res.status(500).json({ message: 'Internal server error' });
