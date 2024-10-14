@@ -208,9 +208,7 @@
                 </div>
                 <div class="form-group">
                     <label for="content">Content</label>
-                    <form method="post">
-                        <textarea id="mytextarea">Hello, World!</textarea>
-                    </form>
+                    <textarea id="mytextarea" name="Content">Hello, World!</textarea>
                 </div>
                 <div class="form-group">
                     <label for="image">Image </label>
@@ -223,6 +221,8 @@
     <button class="menu-toggle">
         <i class="fas fa-bars"></i>
     </button>
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
     <script>
         const menuToggle = document.querySelector('.menu-toggle');
@@ -237,6 +237,5 @@
         selector: '#mytextarea'
         });
     </script>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 </body>
 </html>
