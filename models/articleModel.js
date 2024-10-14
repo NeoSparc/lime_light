@@ -46,6 +46,11 @@ const articleSchema = mongoose.Schema({
     }
   );
 
+  articleSchema.pre('save', function (next) {
+    this.Content = sanitizeHtml(this.Content);
+    this.updatedAt = Date.now(); 
+    next();
+  });
 
 const articleModel = mongoose.model('articles',articleSchema)
 
