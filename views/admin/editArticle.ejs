@@ -260,6 +260,7 @@
     <button class="menu-toggle">
         <i class="fas fa-bars"></i>
     </button>
+    <script src="https://cdn.tiny.cloud/1/1xejl2zh8wjg58akc8snt8xhocblhij1cx8n5d0rvd0klf6g/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
     <script>
         const menuToggle = document.querySelector('.menu-toggle');
@@ -271,7 +272,11 @@
             mainContent.classList.toggle('active');
         });
 
-        
+        tinymce.init({
+        selector: '#content',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
     </script>
 </body>
 </html>
