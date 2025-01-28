@@ -77,8 +77,6 @@ exports.addArticlesPost= async (req, res) => {
         const imgurResponse = await multer.uploadToImgur(articleImage.buffer);
         const imageUrl = imgurResponse.link;
         const imageDeleteHash = imgurResponse.deletehash;
-        
-        
 
         const article = new articleModel({
             Name: Name,
@@ -89,7 +87,6 @@ exports.addArticlesPost= async (req, res) => {
             Content : Content,
             articleImage : imageUrl,
             imageDeleteHash : imageDeleteHash
-            
         });
         const articleDatas = await article.save();
         res.redirect('/admin/article')
