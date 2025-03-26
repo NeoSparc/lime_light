@@ -69,11 +69,6 @@ exports.addArticlesPost= async (req, res) => {
         }= req.body
 
         const articleImage = req.file;
-
-        // if (!articleImage) {
-        //     // 'No file uploaded'
-        // }
-
         const imgurResponse = await multer.uploadToImgur(articleImage.buffer);
         const imageUrl = imgurResponse.link;
         const imageDeleteHash = imgurResponse.deletehash;
